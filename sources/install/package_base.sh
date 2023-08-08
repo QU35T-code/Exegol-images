@@ -149,6 +149,15 @@ function install_ohmyzsh() {
     zsh -c "source ~/.oh-my-zsh/custom/plugins/zsh-nvm/zsh-nvm.plugin.zsh" # this is needed to start an instance of zsh to have the plugin set up
 }
 
+function install_fzf() {
+    colorecho "Installing fzf"
+    git -C /opt/tools clone --depth 1 https://github.com/junegunn/fzf.git
+    yes|/opt/tools/fzf/install
+    add-aliases fzf
+    add-test-command "fzf-wordlists --help"
+    add-test-command "fzf --help"
+}
+
 function install_pipx() {
     colorecho "Installing pipx"
     python3 -m pip install pipx
