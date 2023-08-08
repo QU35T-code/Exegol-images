@@ -19,5 +19,5 @@ function install_iot_apt_tools() {
 # Package dedicated to IoT tools
 function package_iot() {
     set_ruby_env
-    install_iot_apt_tools
+    #install_iot_apt_tools
 }

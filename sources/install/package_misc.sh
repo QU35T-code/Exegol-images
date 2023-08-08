@@ -88,8 +88,6 @@ function configure_searchsploit() {
 
 function install_trilium() {
     colorecho "Installing Trilium (building from sources)"
-    # TODO : apt install in a second step
-    fapt libpng16-16 libpng-dev pkg-config autoconf libtool build-essential nasm libx11-dev libxkbfile-dev
     git -C /opt/tools/ clone -b stable --depth 1 https://github.com/zadam/trilium.git
     cd /opt/tools/trilium
     add-aliases trilium
@@ -100,6 +98,7 @@ function install_trilium() {
 
 function configure_trilium() {
     colorecho "Configuring trilium"
+    fapt libpng16-16 libpng-dev pkg-config autoconf libtool build-essential nasm libx11-dev libxkbfile-dev
     zsh -c "source ~/.zshrc && cd /opt/tools/trilium && nvm install 16 && nvm use 16 && npm install && npm rebuild"
     mkdir -p /root/.local/share/trilium-data
     cp -v /root/sources/assets/trilium/* /root/.local/share/trilium-data
@@ -137,7 +136,7 @@ function install_objectwalker() {
 function package_misc() {
     set_go_env
     set_ruby_env
-    install_misc_apt_tools
+    #install_misc_apt_tools
     install_goshs           # Web uploader/downloader page
     install_searchsploit    # Exploitdb local search engine
     install_shellerator     # Reverse shell generator
