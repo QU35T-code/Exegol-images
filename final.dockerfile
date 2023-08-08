@@ -1,4 +1,5 @@
 FROM exegol-test as test
+FROM exegol-iot as iot
 
 FROM exegol-base
 
@@ -30,7 +31,11 @@ COPY --from=test /tmp/history-file /root/.zsh_history
 COPY --from=test /tmp/test-commands-file /.exegol/build_pipeline_tests/all_commands.txt
 COPY --from=test /tmp/tools-file /.exegol/installed_tools.csv
 
-# Other package
+# IOT
+
+RUN ./entrypoint.sh install_iot_apt_tools
+
+# 
 
 WORKDIR /root
 
