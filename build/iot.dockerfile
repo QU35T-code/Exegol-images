@@ -22,8 +22,12 @@ RUN ./entrypoint.sh package_iot
 
 RUN ./entrypoint.sh post_install
 
+RUN chmod +x ../assets/exegol/export_tools.sh
+
+RUN ../assets/exegol/export_tools.sh
+
 FROM alpine:3.17.2
 
 WORKDIR /tmp
 
-# No IOT installation, skipping...
+COPY --from=build /tmp/resources/ /tmp/resources/
