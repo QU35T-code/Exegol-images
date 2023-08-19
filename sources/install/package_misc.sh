@@ -54,8 +54,6 @@ function install_uberfile() {
 function install_arsenal() {
     colorecho "Installing arsenal"
     python3 -m pipx install git+https://github.com/Orange-Cyberdefense/arsenal
-    # Folder must have same name as binary when adding pipx symlinks
-    mv /root/.local/pipx/venvs/arsenal-cli/ /root/.local/pipx/venvs/arsenal/
     add-aliases arsenal
     add-history arsenal
     add-test-command "arsenal --version"
@@ -143,9 +141,14 @@ function install_objectwalker() {
     add-to-list "objectwalker,https://github.com/p0dalirius/objectwalker,A python module to explore the object tree to extract paths to interesting objects in memory."
 }
 
+function configure_pipx() {
+    ln -s /root/.local/pipx/venvs/arsenal-cli/bin/arsenal /root/.local/bin/
+}
+
 function configure_misc() {
     configure_searchsploit
     configure_trilium
+    configure_pipx
 }
 
 # Package dedicated to offensive miscellaneous tools

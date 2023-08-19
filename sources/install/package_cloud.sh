@@ -56,8 +56,6 @@ function install_scout() {
     # CODE-CHECK-WHITELIST=add-aliases
     colorecho "Installing ScoutSuite"
     python3 -m pipx install scoutsuite
-    # Folder must have same name as binary when adding pipx symlinks
-    mv /root/.local/pipx/venvs/scoutsuite/ /root/.local/pipx/venvs/scout/
     add-history scout
     add-test-command "scout --help"
     add-to-list "scout,https://github.com/nccgroup/ScoutSuite,Scout Suite is an open source multi-cloud security-auditing tool which enables security posture assessment of cloud environments."
@@ -104,8 +102,12 @@ function install_cloudmapper() {
     add-to-list "cloudmapper,https://github.com/duo-labs/cloudmapper,CloudMapper helps you analyze your Amazon Web Services (AWS) environments."
 }
 
+function configure_pipx() {
+    ln -s /root/.local/pipx/venvs/scoutsuite/bin/arsenal /root/.local/bin/
+}
+
 function configure_cloud() {
-    colorecho "Nothing to configure"
+    configure_pipx
 }
 
 # Package dedicated to cloud tools
