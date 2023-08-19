@@ -49,6 +49,7 @@ RUN ./entrypoint.sh configure_misc
 
 # Other packages
 
+RUN chmod +x ../assets/exegol/pipx_symlink.sh
 RUN ../assets/exegol/pipx_symlink.sh
 
 WORKDIR /root
