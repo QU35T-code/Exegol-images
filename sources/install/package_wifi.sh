@@ -107,6 +107,10 @@ function install_hcxdumptool() {
     add-to-list "hcxdumptool,https://github.com/ZerBea/hcxdumptool,Small tool to capture packets from wlan devices."
 }
 
+function configure_wifi() {
+    colorecho "Nothing here"
+}
+
 # Package dedicated to wifi pentest tools
 function package_wifi() {
     set_go_env

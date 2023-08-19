@@ -3,6 +3,10 @@
 
 source common.sh
 
+function install_c2_apt_tools() {
+    colorecho "Nothing to install"
+}
+
 function install_pwncat() {
     # CODE-CHECK-WHITELIST=add-aliases
     colorecho "Installing pwncat"
@@ -62,6 +66,11 @@ function install_sliver() {
     add-to-list "sliver,https://github.com/BishopFox/sliver.git,Open source / cross-platform and extensible C2 framework"
 }
 
+function configure_c2() {
+    colorecho "Nothing here"
+    # configure_metasploit
+}
+
 # Package dedicated to command & control frameworks
 function package_c2() {
     set_go_env
@@ -72,9 +81,4 @@ function package_c2() {
     install_metasploit              # Offensive framework
     install_routersploit            # Exploitation Framework for Embedded Devices
     install_sliver                  # Sliver is an open source cross-platform adversary emulation/red team framework
-}
-
-function package_c2_configure() {
-    echo "Package C2 configure"
-    # configure_metasploit
 }

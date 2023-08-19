@@ -2,6 +2,10 @@ FROM exegol-iot:PR1-arm64 as iot
 FROM exegol-misc:PR1-arm64 as misc
 FROM exegol-cloud:PR1-arm64 as cloud
 FROM exegol-mobile:PR1-arm64 as mobile
+FROM exegol-c2:PR1-arm64 as c2
+FROM exegol-crypto:PR1-arm64 as crypto
+FROM exegol-voip:PR1-arm64 as voip
+FROM exegol-wifi:PR1-arm64 as wifi
 
 FROM exegol-base:PR1-arm64
 
@@ -49,6 +53,30 @@ RUN ./entrypoint.sh install_mobile_apt_tools
 COPY --from=mobile /tmp/resources/ /tmp/resources
 RUN ../assets/exegol/import_tools.sh
 RUN ./entrypoint.sh configure_mobile
+
+# C2 package
+RUN ./entrypoint.sh install_c2_apt_tools
+COPY --from=c2 /tmp/resources/ /tmp/resources
+RUN ../assets/exegol/import_tools.sh
+RUN ./entrypoint.sh configure_c2
+
+# Crypto package
+RUN ./entrypoint.sh install_crypto_apt_tools
+COPY --from=crypto /tmp/resources/ /tmp/resources
+RUN ../assets/exegol/import_tools.sh
+RUN ./entrypoint.sh configure_crypto
+
+# Voip package
+RUN ./entrypoint.sh install_voip_apt_tools
+COPY --from=voip /tmp/resources/ /tmp/resources
+RUN ../assets/exegol/import_tools.sh
+RUN ./entrypoint.sh configure_voip
+
+# Wifi package
+RUN ./entrypoint.sh install_wifi_apt_tools
+COPY --from=wifi /tmp/resources/ /tmp/resources
+RUN ../assets/exegol/import_tools.sh
+RUN ./entrypoint.sh configure_wifi
 
 # Latest sync
 

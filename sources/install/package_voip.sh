@@ -3,6 +3,10 @@
 
 source common.sh
 
+function install_voip_apt_tools() {
+    colorecho "Nothing to install"    
+}
+
 function install_sipvicious() {
     # CODE-CHECK-WHITELIST=add-aliases
     colorecho "Installing SIPVicious"
@@ -10,6 +14,10 @@ function install_sipvicious() {
     add-history sipvicious_svcrack
     add-test-command "sipvicious_svcrack --version"
     add-to-list "sipvicious,https://github.com/enablesecurity/sipvicious,Enumeration and MITM tool for SIP devices"
+}
+
+function configure_voip() {
+    colorecho "Nothing here"
 }
 
 # Package dedicated to VOIP/SIP pentest tools

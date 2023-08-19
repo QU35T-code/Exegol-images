@@ -3,6 +3,10 @@
 
 source common.sh
 
+function install_crypto_apt_tools() {
+    colorecho "Nothing to install"
+}
+
 function install_tls-map() {
     colorecho "Installing TLS map"
     rvm use 3.0.0@tls-map --create
@@ -26,6 +30,10 @@ function install_rsactftool() {
     add-history rsactftool
     add-test-command "rsactftool --help"
     add-to-list "rsactftool,https://github.com/RsaCtfTool/RsaCtfTool,The rsactftool tool is used for RSA cryptographic operations and analysis."
+}
+
+function configure_crypto() {
+    echo "Nothing here"
 }
 
 # Package dedicated to attack crypto
