@@ -1,10 +1,10 @@
-FROM exegol-test as test
-FROM exegol-iot as iot
-FROM exegol-misc as misc
+# FROM exegol-test as test
+# FROM exegol-iot as iot
+FROM exegol-misc:PR1-arm64 as misc
 
 # TODO: add pipx symlink /root/.local/pipx/bin ?
 
-FROM exegol-base
+FROM exegol-base:PR1-arm64
 
 ARG TAG="local"
 ARG VERSION="local"
