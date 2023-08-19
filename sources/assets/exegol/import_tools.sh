@@ -11,3 +11,5 @@ cat /tmp/resources/aliases-file >> /opt/.exegol_aliases
 cat /tmp/resources/history-file >> /root/.zsh_history
 cat /tmp/resources/test-commands-file >> /.exegol/build_pipeline_tests/all_commands.txt
 cat /tmp/resources/tools-file >> /.exegol/installed_tools.csv
+
+rm -rf /tmp/resources

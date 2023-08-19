@@ -6,8 +6,7 @@ source common.sh
 function install_kubectl() {
     # CODE-CHECK-WHITELIST=add-aliases
     colorecho "Installing kubectl"
-    mkdir -p /opt/tools/kubectl
-    cd /opt/tools/kubectl
+    cd /tmp
     if [[ $(uname -m) = 'x86_64' ]]
     then
         curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
@@ -20,14 +19,11 @@ function install_kubectl() {
     else
         criticalecho-noexit "This installation function doesn't support architecture $(uname -m)" && return
     fi
+    install -o root -g root -m 0755 kubectl /opt/tools/bin/kubectl
+    rm ./kubectl
     add-history kubectl
     add-test-command "kubectl --help"
     add-to-list "kubectl,https://kubernetes.io/docs/reference/kubectl/overview/,Command-line interface for managing Kubernetes clusters."
-}
-
-function configure_kubectl() {
-    cd /opt/tools/kubectl
-    install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 }
 
 function install_awscli() {
@@ -44,9 +40,8 @@ function install_awscli() {
         criticalecho-noexit "This installation function doesn't support architecture $(uname -m)" && return
     fi
     unzip awscliv2.zip
-    ./aws/install -i /opt/tools/aws-cli -b /usr/local/bin
-    rm -rf aws
-    rm awscliv2.zip
+    ./aws/install -i /opt/tools/aws-cli -b /opt/tools/bin
+    rm -rf aws awscliv2.zip
     # TODO: improve history : https://www.bluematador.com/learn/aws-cli-cheatsheet
     add-history aws
     add-test-command "aws --version"
@@ -101,6 +96,10 @@ function install_cloudmapper() {
     add-history cloudmapper
     add-test-command 'cloudmapper --help |& grep "usage"'
     add-to-list "cloudmapper,https://github.com/duo-labs/cloudmapper,CloudMapper helps you analyze your Amazon Web Services (AWS) environments."
+}
+
+function configure_cloud() {
+    colorecho "Nothing to configure"
 }
 
 # Package dedicated to cloud tools

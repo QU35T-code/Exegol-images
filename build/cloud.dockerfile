@@ -22,16 +22,12 @@ RUN ./entrypoint.sh package_cloud
 
 RUN ./entrypoint.sh post_install
 
+RUN chmod +x ../assets/exegol/export_tools.sh
+
+RUN ../assets/exegol/export_tools.sh
+
 FROM alpine:3.17.2
 
 WORKDIR /tmp
 
-COPY --from=build /opt/tools/ folder-opt/
-COPY --from=build /usr/local/rvm/gems/ folder-ruby/
-COPY --from=build /root/go/bin/ folder-go/
-COPY --from=build /root/.local/pipx/venvs/ folder-pipx/
-
-COPY --from=build /opt/.exegol_aliases aliases-file
-COPY --from=build /root/.zsh_history history-file
-COPY --from=build /.exegol/build_pipeline_tests/all_commands.txt test-commands-file
-COPY --from=build /.exegol/installed_tools.csv tools-file
+COPY --from=build /tmp/resources/ /tmp/resources/

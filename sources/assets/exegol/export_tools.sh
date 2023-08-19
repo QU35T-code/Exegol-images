@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Extract tools"
+echo "Export tools"
 mkdir /tmp/resources
 
 cp -r /opt/tools/ /tmp/resources/folder-opt/

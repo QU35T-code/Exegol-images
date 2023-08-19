@@ -1,6 +1,6 @@
 FROM exegol-iot:PR1-arm64 as iot
 FROM exegol-misc:PR1-arm64 as misc
-# FROM exegol-cloud:PR1-arm64 as cloud
+FROM exegol-cloud:PR1-arm64 as cloud
 
 FROM exegol-base:PR1-arm64
 
@@ -19,6 +19,8 @@ WORKDIR /root/sources/install
 RUN echo "${TAG}-${VERSION}" > /opt/.exegol_version
 RUN chmod +x entrypoint.sh
 
+RUN chmod +x ../assets/exegol/import_tools.sh
+
 # IOT package
 
 RUN ./entrypoint.sh install_iot_apt_tools
@@ -27,27 +29,17 @@ RUN ./entrypoint.sh install_iot_apt_tools
 
 RUN ./entrypoint.sh install_misc_apt_tools
 COPY --from=misc /tmp/resources/ /tmp/resources
-RUN chmod +x ../assets/exegol/import_tools.sh
 RUN ../assets/exegol/import_tools.sh
 RUN ./entrypoint.sh configure_misc
 
 # Cloud package
 
-# RUN ./entrypoint.sh install_cloud_apt_tools
+RUN ./entrypoint.sh install_cloud_apt_tools
+COPY --from=cloud /tmp/resources/ /tmp/resources
+RUN ../assets/exegol/import_tools.sh
+RUN ./entrypoint.sh configure_cloud
 
-# COPY --from=cloud /tmp/folder-opt /opt/tools/
-# COPY --from=cloud /tmp/folder-ruby /usr/local/rvm/gems/
-# COPY --from=cloud /tmp/folder-go /root/go/bin/
-# COPY --from=cloud /tmp/folder-pipx /root/.local/pipx/venvs/
-
-# COPY --from=cloud /tmp/aliases-file /opt/.exegol_aliases
-# COPY --from=cloud /tmp/history-file /root/.zsh_history
-# COPY --from=cloud /tmp/test-commands-file /.exegol/build_pipeline_tests/all_commands.txt
-# COPY --from=cloud /tmp/tools-file /.exegol/installed_tools.csv
-
-# RUN ./entrypoint.sh configure_kubectl
-
-# Other packages
+# Latest sync
 
 RUN chmod +x ../assets/exegol/pipx_symlink.sh
 RUN ../assets/exegol/pipx_symlink.sh

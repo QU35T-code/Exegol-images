@@ -22,9 +22,9 @@ RUN ./entrypoint.sh package_misc
 
 RUN ./entrypoint.sh post_install
 
-RUN chmod +x ../assets/exegol/extract_tools.sh
+RUN chmod +x ../assets/exegol/export_tools.sh
 
-RUN ../assets/exegol/extract_tools.sh
+RUN ../assets/exegol/export_tools.sh
 
 FROM alpine:3.17.2
 
