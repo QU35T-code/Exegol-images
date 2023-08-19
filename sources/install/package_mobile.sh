@@ -76,6 +76,10 @@ function install_androguard() {
     add-to-list "androguard,https://github.com/androguard/androguard,Reverse engineering and analysis of Android applications"
 }
 
+function configure_mobile() {
+    colorecho "Nothing to configure"
+}
+
 # Package dedicated to mobile apps pentest tools
 function package_mobile() {
     set_ruby_env

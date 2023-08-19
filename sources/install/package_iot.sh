@@ -18,8 +18,11 @@ function install_iot_apt_tools() {
     add-to-list "minicom,https://doc.ubuntu-fr.org/minicom,Minicom is a text-based serial communication program for Unix-like operating systems."
 }
 
+function configure_iot() {
+    colorecho "Nothing to configure"
+}
+
 # Package dedicated to IoT tools
 function package_iot() {
     set_ruby_env
-    #install_iot_apt_tools
 }

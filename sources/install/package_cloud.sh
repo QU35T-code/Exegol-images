@@ -3,6 +3,10 @@
 
 source common.sh
 
+function install_cloud_apt_tools() {
+    colorecho "Nothing to install"
+}
+
 function install_kubectl() {
     # CODE-CHECK-WHITELIST=add-aliases
     colorecho "Installing kubectl"

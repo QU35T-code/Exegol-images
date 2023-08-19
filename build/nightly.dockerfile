@@ -1,6 +1,7 @@
 FROM exegol-iot:PR1-arm64 as iot
 FROM exegol-misc:PR1-arm64 as misc
 FROM exegol-cloud:PR1-arm64 as cloud
+FROM exegol-mobile:PR1-arm64 as mobile
 
 FROM exegol-base:PR1-arm64
 
@@ -24,6 +25,9 @@ RUN chmod +x ../assets/exegol/import_tools.sh
 # IOT package
 
 RUN ./entrypoint.sh install_iot_apt_tools
+COPY --from=iot /tmp/resources/ /tmp/resources
+RUN ../assets/exegol/import_tools.sh
+RUN ./entrypoint.sh configure_iot
 
 # Misc package
 
@@ -38,6 +42,13 @@ RUN ./entrypoint.sh install_cloud_apt_tools
 COPY --from=cloud /tmp/resources/ /tmp/resources
 RUN ../assets/exegol/import_tools.sh
 RUN ./entrypoint.sh configure_cloud
+
+# Mobile package
+
+RUN ./entrypoint.sh install_mobile_apt_tools
+COPY --from=mobile /tmp/resources/ /tmp/resources
+RUN ../assets/exegol/import_tools.sh
+RUN ./entrypoint.sh configure_mobile
 
 # Latest sync
 
