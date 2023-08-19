@@ -102,12 +102,12 @@ function install_cloudmapper() {
     add-to-list "cloudmapper,https://github.com/duo-labs/cloudmapper,CloudMapper helps you analyze your Amazon Web Services (AWS) environments."
 }
 
-function configure_pipx() {
+function configure_cloud_pipx() {
     ln -s /root/.local/pipx/venvs/scoutsuite/bin/scout /root/.local/bin/scout
 }
 
 function configure_cloud() {
-    configure_pipx
+    configure_cloud_pipx
 }
 
 # Package dedicated to cloud tools

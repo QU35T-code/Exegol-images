@@ -141,14 +141,14 @@ function install_objectwalker() {
     add-to-list "objectwalker,https://github.com/p0dalirius/objectwalker,A python module to explore the object tree to extract paths to interesting objects in memory."
 }
 
-function configure_pipx() {
+function configure_misc_pipx() {
     ln -s /root/.local/pipx/venvs/arsenal-cli/bin/arsenal /root/.local/bin/arsenal
 }
 
 function configure_misc() {
     configure_searchsploit
     configure_trilium
-    configure_pipx
+    configure_misc_pipx
 }
 
 # Package dedicated to offensive miscellaneous tools
