@@ -142,7 +142,7 @@ function install_objectwalker() {
 }
 
 function configure_pipx() {
-    ln -s /root/.local/pipx/venvs/arsenal-cli/bin/arsenal /root/.local/bin/
+    ln -sf /root/.local/pipx/venvs/arsenal-cli/bin/arsenal /root/.local/bin/
 }
 
 function configure_misc() {
@@ -165,9 +165,4 @@ function package_misc() {
     install_ngrok           # expose a local development server to the Internet
     install_whatportis      # Search default port number
     install_objectwalker    # Python module to explore the object tree to extract paths to interesting objects in memory
-}
-
-function package_misc_configure() {
-    configure_searchsploit
-    configure_trilium
 }
