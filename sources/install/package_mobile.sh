@@ -54,7 +54,7 @@ function install_frida() {
     colorecho "Installing frida"
     python3 -m pipx install frida-tools
     # Folder must have same name as binary when adding pipx symlinks
-    mv /root/.local/pipx/venv/frida-tools /root/.local/pipx/venv/frida
+    mv /root/.local/pipx/venvs/frida-tools /root/.local/pipx/venvs/frida
     add-history frida
     add-test-command "frida --version"
     add-to-list "frida,https://github.com/frida/frida,Dynamic instrumentation toolkit"

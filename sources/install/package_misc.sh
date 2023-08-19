@@ -55,7 +55,7 @@ function install_arsenal() {
     colorecho "Installing arsenal"
     python3 -m pipx install git+https://github.com/Orange-Cyberdefense/arsenal
     # Folder must have same name as binary when adding pipx symlinks
-    mv /root/.local/pipx/venv/arsenal-cli/ /root/.local/pipx/venv/arsenal/
+    mv /root/.local/pipx/venvs/arsenal-cli/ /root/.local/pipx/venvs/arsenal/
     add-aliases arsenal
     add-history arsenal
     add-test-command "arsenal --version"
