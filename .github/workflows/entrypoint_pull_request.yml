@@ -54,7 +54,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        arch: [arm64, amd64]
+        arch: [arm64]
+        #arch: [arm64, amd64]
     uses: ./.github/workflows/sub_build_belt.yml
     with:
       DOCKER_BUILD_REPO: ${{ needs.varset.outputs.DOCKER_BUILD_REPO }}
@@ -71,7 +72,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        arch: [ arm64, amd64 ]
+        arch: [ arm64 ]
+        #arch: [ arm64, amd64 ]
     uses: ./.github/workflows/sub_build_belt.yml
     with:
       DOCKER_BUILD_REPO: ${{ needs.varset.outputs.DOCKER_BUILD_REPO }}
@@ -88,7 +90,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        arch: [ arm64, amd64 ]
+        arch: [ arm64 ]
+        #arch: [ arm64, amd64 ]
     uses: ./.github/workflows/sub_build_belt.yml
     with:
       DOCKER_BUILD_REPO: ${{ needs.varset.outputs.DOCKER_BUILD_REPO }}
@@ -108,7 +111,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        arch: [ arm64, amd64 ]
+        arch: [ arm64 ]
+        #arch: [ arm64, amd64 ]
     runs-on:
       - self-hosted
       - builder
