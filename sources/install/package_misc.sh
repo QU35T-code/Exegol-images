@@ -141,6 +141,11 @@ function install_objectwalker() {
     add-to-list "objectwalker,https://github.com/p0dalirius/objectwalker,A python module to explore the object tree to extract paths to interesting objects in memory."
 }
 
+function configure_misc() {
+    configure_searchsploit
+    configure_trilium
+}
+
 # Package dedicated to offensive miscellaneous tools
 function package_misc() {
     set_go_env
