@@ -30,4 +30,4 @@ FROM alpine:3.17.2
 
 WORKDIR /tmp
 
-COPY --from=build /tmp/resources .
+COPY --from=build /tmp/resources/ /tmp/resources/
