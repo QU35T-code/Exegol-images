@@ -77,7 +77,8 @@ jobs:
       fail-fast: false
       matrix:
         arch: [ arm64 ]
-        intermediary_images: [ "misc", "iot" ]
+        intermediary_images: [ "cloud" ]
+        #intermediary_images: [ "misc", "iot", "cloud" ]
         #arch: [ arm64, amd64 ]
     uses: ./.github/workflows/sub_build_belt.yml
     with:
@@ -101,11 +102,11 @@ jobs:
         #arch: [ arm64, amd64 ]
     uses: ./.github/workflows/sub_build_belt.yml
     with:
-      DOCKER_BUILD_REPO: exegol-final
+      DOCKER_BUILD_REPO: exegol-nightly
       #DOCKER_BUILD_REPO: ${{ needs.varset.outputs.DOCKER_BUILD_REPO }}
       DOCKER_TARGET_REPO: ${{ needs.varset.outputs.DOCKER_TARGET_REPO }}
       IMAGE_BASE_NAME: ${{ needs.varset.outputs.IMAGE_BASE_NAME }}
-      DOCKERFILE: ./build/final.dockerfile
+      DOCKERFILE: ./build/nightly.dockerfile
       IMAGE_VERSION: ${{ needs.varset.outputs.IMAGE_VERSION }}
       ARCH: ${{ matrix.arch }}
       PR_MODE: true

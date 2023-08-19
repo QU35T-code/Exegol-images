@@ -1,6 +1,6 @@
 # Author: The Exegol Project
 
-FROM exegol-base as build
+FROM exegol-base:PR1-arm64 as build
 
 ARG TAG="local"
 ARG VERSION="local"
@@ -16,11 +16,9 @@ COPY sources /root/sources/
 
 WORKDIR /root/sources/install
 
-RUN echo "${TAG}-${VERSION}" > /opt/.exegol_version
-    
 RUN chmod +x entrypoint.sh
 
-RUN ./entrypoint.sh package_test
+RUN ./entrypoint.sh package_cloud
 
 RUN ./entrypoint.sh post_install
 

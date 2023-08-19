@@ -20,10 +20,14 @@ function install_kubectl() {
     else
         criticalecho-noexit "This installation function doesn't support architecture $(uname -m)" && return
     fi
-    install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
     add-history kubectl
     add-test-command "kubectl --help"
     add-to-list "kubectl,https://kubernetes.io/docs/reference/kubectl/overview/,Command-line interface for managing Kubernetes clusters."
+}
+
+function configure_kubectl() {
+    cd /opt/tools/kubectl
+    install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 }
 
 function install_awscli() {
