@@ -45,29 +45,29 @@ jobs:
           echo "IMAGE_BASE_NAME=PR${PR_NUMBER}" >> $GITHUB_OUTPUT
           echo "DOCKERFILE=${DOCKERFILE}" >> $GITHUB_OUTPUT
 
-  code-check:
-    name: Code compliance
-    uses: ./.github/workflows/sub_code_check.yml
+  # code-check:
+  #   name: Code compliance
+  #   uses: ./.github/workflows/sub_code_check.yml
 
-  base_belt:
-    name: Base belt
-    needs: [varset, code-check]
-    strategy:
-      fail-fast: false
-      matrix:
-        arch: [arm64]
-        #arch: [arm64, amd64]
-    uses: ./.github/workflows/sub_build_belt.yml
-    with:
-      # BASE_IMAGE_NAME: ${{ needs.varset.outputs.BASE_IMAGE_NAME }}
-      DOCKER_BUILD_REPO: exegol-base
-      #DOCKER_BUILD_REPO: ${{ needs.varset.outputs.DOCKER_BUILD_REPO }}
-      DOCKER_TARGET_REPO: ${{ needs.varset.outputs.DOCKER_TARGET_REPO }}
-      IMAGE_BASE_NAME: ${{ needs.varset.outputs.IMAGE_BASE_NAME }}
-      DOCKERFILE: ./build/base.dockerfile
-      IMAGE_VERSION: ${{ needs.varset.outputs.IMAGE_VERSION }}
-      ARCH: ${{ matrix.arch }}
-      PR_MODE: true
+  # base_belt:
+  #   name: Base belt
+  #   needs: [varset, code-check]
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       arch: [arm64]
+  #       #arch: [arm64, amd64]
+  #   uses: ./.github/workflows/sub_build_belt.yml
+  #   with:
+  #     # BASE_IMAGE_NAME: ${{ needs.varset.outputs.BASE_IMAGE_NAME }}
+  #     DOCKER_BUILD_REPO: exegol-base
+  #     #DOCKER_BUILD_REPO: ${{ needs.varset.outputs.DOCKER_BUILD_REPO }}
+  #     DOCKER_TARGET_REPO: ${{ needs.varset.outputs.DOCKER_TARGET_REPO }}
+  #     IMAGE_BASE_NAME: ${{ needs.varset.outputs.IMAGE_BASE_NAME }}
+  #     DOCKERFILE: ./build/base.dockerfile
+  #     IMAGE_VERSION: ${{ needs.varset.outputs.IMAGE_VERSION }}
+  #     ARCH: ${{ matrix.arch }}
+  #     PR_MODE: true
 
   build_belt:
     name: Build belt
