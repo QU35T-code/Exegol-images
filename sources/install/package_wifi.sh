@@ -29,7 +29,7 @@ function install_pyrit() {
     colorecho "Installing pyrit"
     git -C /opt/tools clone --depth 1 https://github.com/JPaulMora/Pyrit
     cd /opt/tools/Pyrit
-    fapt libpq-dev
+    fapt libpq-dev libpcap-dev
     virtualenv -p /usr/bin/python2 ./venv
     ./venv/bin/python2 -m pip install psycopg2-binary scapy
     # https://github.com/JPaulMora/Pyrit/issues/591
