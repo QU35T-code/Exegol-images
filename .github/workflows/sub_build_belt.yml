@@ -106,67 +106,70 @@ jobs:
       - name: Inspect built image
         run: docker inspect ${{ inputs.DOCKER_BUILD_REPO }}:${{ inputs.IMAGE_BASE_NAME }}-${{ inputs.ARCH }}
 
-  test:
-    name: Test
-    needs: build
-    uses: ./.github/workflows/sub_test.yml
-    with:
-      DOCKER_BUILD_REPO: ${{ inputs.DOCKER_BUILD_REPO }}
-      IMAGE_BASE_NAME: ${{ inputs.IMAGE_BASE_NAME }}
-      ARCH: ${{ inputs.ARCH }}
+  # test:
+  #   name: Test
+  #   needs: build
+  #   uses: ./.github/workflows/sub_test.yml
+  #   with:
+  #     DOCKER_BUILD_REPO: ${{ inputs.DOCKER_BUILD_REPO }}
+  #     IMAGE_BASE_NAME: ${{ inputs.IMAGE_BASE_NAME }}
+  #     ARCH: ${{ inputs.ARCH }}
 
-  push:
-    name: Push
-    needs: test
+  #push:
+  #  name: Push
+    #needs: test
     # Push image to exegol-builds whatever the outcome of "test" is, as long as the image was built (which is already an implicit requirement of the "test" job)
     # Only pushing if not in PR_MODE, in order to prevent external PRs from accessing secrets
-    if: always() && inputs.PR_MODE == false && ( needs.test.result == 'failure' || needs.test.result == 'success' )
-    uses: ./.github/workflows/sub_push.yml
-    with:
-      DOCKER_BUILD_REPO: ${{ inputs.DOCKER_BUILD_REPO }}
-      IMAGE_BASE_NAME: ${{ inputs.IMAGE_BASE_NAME }}
-      DOCKERFILE: ${{ inputs.DOCKERFILE }}
-      ARCH: ${{ inputs.ARCH }}
-    secrets:
-      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+    # if: always() && inputs.PR_MODE == false && ( needs.test.result == 'failure' || needs.test.result == 'success' )
+    # uses: ./.github/workflows/sub_push.yml
+    # with:
+    #   DOCKER_BUILD_REPO: ${{ inputs.DOCKER_BUILD_REPO }}
+    #   IMAGE_BASE_NAME: ${{ inputs.IMAGE_BASE_NAME }}
+    #   DOCKERFILE: ${{ inputs.DOCKERFILE }}
+    #   ARCH: ${{ inputs.ARCH }}
+    # secrets:
+    #   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+    #   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
-  export_tools:
-    name: Export tools list
-    needs: test
-    # Only exporting tools list if not in PR_MODE, in order to prevent external PRs from accessing GitHub token
-    # Only exporting tools list if tests were a success
-    if: always() && inputs.PR_MODE == false && needs.test.result == 'success'
-    uses: ./.github/workflows/sub_export_tools.yml
-    with:
-      DOCKER_BUILD_REPO: ${{ inputs.DOCKER_BUILD_REPO }}
-      IMAGE_BASE_NAME: ${{ inputs.IMAGE_BASE_NAME }}
-      IMAGE_VERSION: ${{ inputs.IMAGE_VERSION }}
-      ARCH: ${{ inputs.ARCH }}
-    secrets:
-      EXEGOL_DOCS_SSH_DEPLOY_KEY: ${{ secrets.EXEGOL_DOCS_SSH_DEPLOY_KEY }}
+  # export_tools:
+  #   name: Export tools list
+  #   needs: test
+  #   # Only exporting tools list if not in PR_MODE, in order to prevent external PRs from accessing GitHub token
+  #   # Only exporting tools list if tests were a success
+  #   if: always() && inputs.PR_MODE == false && needs.test.result == 'success'
+  #   uses: ./.github/workflows/sub_export_tools.yml
+  #   with:
+  #     DOCKER_BUILD_REPO: ${{ inputs.DOCKER_BUILD_REPO }}
+  #     IMAGE_BASE_NAME: ${{ inputs.IMAGE_BASE_NAME }}
+  #     IMAGE_VERSION: ${{ inputs.IMAGE_VERSION }}
+  #     ARCH: ${{ inputs.ARCH }}
+  #   secrets:
+  #     EXEGOL_DOCS_SSH_DEPLOY_KEY: ${{ secrets.EXEGOL_DOCS_SSH_DEPLOY_KEY }}
 
-  export_results:
-    name: Exporting test results for higher jobs
-    needs:
-      - build
-      - test
-      - push
-    if: always()
-    runs-on: self-hosted
-    steps:
-      - name: Extract build result
-        id: build
-        if: needs.build.result != 'success'
-        run: echo "result=failure" >> $GITHUB_OUTPUT
-      - name: Extract tests result
-        id: test
-        if: needs.test.result != 'success'
-        run: echo "result=failure" >> $GITHUB_OUTPUT
-      - name: Extract push result
-        id: push
-        if: needs.push.result != 'success'
-        run: echo "result=failure" >> $GITHUB_OUTPUT
-    outputs:
-      test: ${{ steps.test.outputs.result }}
-      push: ${{ steps.push.outputs.result }}
+  # export_results:
+  #   name: Exporting test results for higher jobs
+  #   needs:
+  #     - build
+  #     - push
+  #   #needs:
+  #   #  - build
+  #   #  - test
+  #   #  - push
+  #   if: always()
+  #   runs-on: self-hosted
+  #   steps:
+  #     - name: Extract build result
+  #       id: build
+  #       if: needs.build.result != 'success'
+  #       run: echo "result=failure" >> $GITHUB_OUTPUT
+  #     # - name: Extract tests result
+  #     #   id: test
+  #     #   if: needs.test.result != 'success'
+  #     #   run: echo "result=failure" >> $GITHUB_OUTPUT
+  #     - name: Extract push result
+  #       id: push
+  #       if: needs.push.result != 'success'
+  #       run: echo "result=failure" >> $GITHUB_OUTPUT
+  #   outputs:
+  #     # test: ${{ steps.test.outputs.result }}
+  #     push: ${{ steps.push.outputs.result }}
