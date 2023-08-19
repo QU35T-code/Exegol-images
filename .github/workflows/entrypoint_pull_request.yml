@@ -71,7 +71,8 @@ jobs:
 
   build_belt:
     name: Build belt
-    needs: [varset, base_belt]
+    needs: [varset]
+    #needs: [varset, base_belt]
     strategy:
       fail-fast: false
       matrix:
@@ -90,7 +91,8 @@ jobs:
 
   image_belt:
     name: Image belt
-    needs: [varset, base_belt, build_belt]
+    needs: [varset, build_belt]
+    # needs: [varset, base_belt, build_belt]
     strategy:
       fail-fast: false
       matrix:
