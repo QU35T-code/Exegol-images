@@ -48,9 +48,26 @@ jobs:
     name: Code compliance
     uses: ./.github/workflows/sub_code_check.yml
 
+  base_belt:
+    name: Base belt
+    needs: [varset, code-check]
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [arm64, amd64]
+    uses: ./.github/workflows/sub_build_belt.yml
+    with:
+      DOCKER_BUILD_REPO: ${{ needs.varset.outputs.DOCKER_BUILD_REPO }}
+      DOCKER_TARGET_REPO: ${{ needs.varset.outputs.DOCKER_TARGET_REPO }}
+      IMAGE_BASE_NAME: ${{ needs.varset.outputs.IMAGE_BASE_NAME }}
+      DOCKERFILE: ./build/base.dockerfile
+      IMAGE_VERSION: ${{ needs.varset.outputs.IMAGE_VERSION }}
+      ARCH: ${{ matrix.arch }}
+      PR_MODE: true
+
   build_belt:
     name: Build belt
-    needs: [varset, code-check]
+    needs: [varset, code-check, base_belt]
     strategy:
       fail-fast: false
       matrix:
@@ -60,7 +77,24 @@ jobs:
       DOCKER_BUILD_REPO: ${{ needs.varset.outputs.DOCKER_BUILD_REPO }}
       DOCKER_TARGET_REPO: ${{ needs.varset.outputs.DOCKER_TARGET_REPO }}
       IMAGE_BASE_NAME: ${{ needs.varset.outputs.IMAGE_BASE_NAME }}
-      DOCKERFILE: ${{ needs.varset.outputs.DOCKERFILE }}
+      DOCKERFILE: ./build/misc.dockerfile
+      IMAGE_VERSION: ${{ needs.varset.outputs.IMAGE_VERSION }}
+      ARCH: ${{ matrix.arch }}
+      PR_MODE: true
+
+  image_belt:
+    name: Image belt
+    needs: [varset, code-check, base_belt, build_belt]
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [ arm64, amd64 ]
+    uses: ./.github/workflows/sub_build_belt.yml
+    with:
+      DOCKER_BUILD_REPO: ${{ needs.varset.outputs.DOCKER_BUILD_REPO }}
+      DOCKER_TARGET_REPO: ${{ needs.varset.outputs.DOCKER_TARGET_REPO }}
+      IMAGE_BASE_NAME: ${{ needs.varset.outputs.IMAGE_BASE_NAME }}
+      DOCKERFILE: ./build/final.dockerfile
       IMAGE_VERSION: ${{ needs.varset.outputs.IMAGE_VERSION }}
       ARCH: ${{ matrix.arch }}
       PR_MODE: true
