@@ -54,6 +54,8 @@ function install_uberfile() {
 function install_arsenal() {
     colorecho "Installing arsenal"
     python3 -m pipx install git+https://github.com/Orange-Cyberdefense/arsenal
+    # Rename so that the binary has the same name as the folder when adding pipx symlinks
+    mv /root/.local/pipx/venv/arsenal-cli/ /root/.local/pipx/venv/arsenal/
     add-aliases arsenal
     add-history arsenal
     add-test-command "arsenal --version"
