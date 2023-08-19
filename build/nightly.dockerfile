@@ -26,7 +26,7 @@ RUN ./entrypoint.sh install_iot_apt_tools
 # Misc package
 
 RUN ./entrypoint.sh install_misc_apt_tools
-COPY --from=misc /tmp/resources/ /tmp
+COPY --from=misc /tmp/resources/ /tmp/resources
 RUN chmod +x ../assets/exegol/import_tools.sh
 RUN ../assets/exegol/import_tools.sh
 RUN ./entrypoint.sh configure_misc
