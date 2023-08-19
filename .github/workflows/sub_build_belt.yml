@@ -52,13 +52,16 @@ jobs:
       - builder
       - ${{ inputs.ARCH }}
     steps:
-      - name: Clean dangling build cache
-        run: docker builder prune --force
-      - name: Clean Exegol dangling images
+      - name: "Refacto debug"
+        run: "echo 'Hey'"
+    # DEBUG
+    #  - name: Clean dangling build cache
+     #   run: docker builder prune --force
+    #  - name: Clean Exegol dangling images
         # dangling: images that were replaced with ones with the same name and tag
-        run: docker image prune --force --filter "label=org.exegol.app=Exegol"
-      - name: Clean unused local volumes
-        run: docker volume prune --force
+    #    run: docker image prune --force --filter "label=org.exegol.app=Exegol"
+    #  - name: Clean unused local volumes
+    #   run: docker volume prune --force
 
   debug_pre_build:
     name: Pre-build debug
@@ -69,9 +72,11 @@ jobs:
       - ${{ inputs.ARCH }}
     steps:
       - name: List images
-        run: docker image ls -a
+        run: echo "Cannot"
+        #run: docker image ls -a
       - name: List containers
-        run: docker ps
+        run: echo "Cannot"
+        #run: docker ps
 
   build:
     name: Build
