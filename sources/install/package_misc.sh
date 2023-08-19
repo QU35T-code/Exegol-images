@@ -142,7 +142,7 @@ function install_objectwalker() {
 }
 
 function configure_pipx() {
-    ln -sf /root/.local/pipx/venvs/arsenal-cli/bin/arsenal /root/.local/bin/
+    ln -s /root/.local/pipx/venvs/arsenal-cli/bin/arsenal /root/.local/bin/arsenal
 }
 
 function configure_misc() {

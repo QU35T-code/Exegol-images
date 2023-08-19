@@ -103,7 +103,7 @@ function install_cloudmapper() {
 }
 
 function configure_pipx() {
-    ln -sf /root/.local/pipx/venvs/scoutsuite/bin/arsenal /root/.local/bin/
+    ln -s /root/.local/pipx/venvs/scoutsuite/bin/scout /root/.local/bin/scout
 }
 
 function configure_cloud() {
