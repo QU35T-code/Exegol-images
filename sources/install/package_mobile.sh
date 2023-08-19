@@ -53,6 +53,8 @@ function install_frida() {
     # CODE-CHECK-WHITELIST=add-aliases
     colorecho "Installing frida"
     python3 -m pipx install frida-tools
+    # Folder must have same name as binary when adding pipx symlinks
+    mv /root/.local/pipx/venv/frida-tools /root/.local/pipx/venv/frida
     add-history frida
     add-test-command "frida --version"
     add-to-list "frida,https://github.com/frida/frida,Dynamic instrumentation toolkit"
@@ -62,6 +64,7 @@ function install_objection() {
     # CODE-CHECK-WHITELIST=add-aliases
     colorecho "Installing objection"
     python3 -m pipx install git+https://github.com/sensepost/objection
+    python3 -m pipx inject objection setuptools
     add-history objection
     add-test-command "objection --help"
     add-to-list "objection,https://github.com/sensepost/objection,Runtime mobile exploration"

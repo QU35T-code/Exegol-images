@@ -56,6 +56,8 @@ function install_scout() {
     # CODE-CHECK-WHITELIST=add-aliases
     colorecho "Installing ScoutSuite"
     python3 -m pipx install scoutsuite
+    # Folder must have same name as binary when adding pipx symlinks
+    mv /root/.local/pipx/venv/scoutsuite/ /root/.local/pipx/venv/scout/
     add-history scout
     add-test-command "scout --help"
     add-to-list "scout,https://github.com/nccgroup/ScoutSuite,Scout Suite is an open source multi-cloud security-auditing tool which enables security posture assessment of cloud environments."
