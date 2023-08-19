@@ -158,6 +158,7 @@ function install_ohmyzsh() {
 }
 
 function install_fzf() {
+    # CODE-CHECK-WHITELIST=add-history
     colorecho "Installing fzf"
     git -C /opt/tools clone --depth 1 https://github.com/junegunn/fzf.git
     yes|/opt/tools/fzf/install
