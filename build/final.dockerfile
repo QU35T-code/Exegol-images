@@ -1,5 +1,5 @@
 # FROM exegol-test as test
-# FROM exegol-iot as iot
+FROM exegol-iot:PR1-arm64 as iot
 FROM exegol-misc:PR1-arm64 as misc
 
 # TODO: add pipx symlink /root/.local/pipx/bin ?
@@ -38,7 +38,7 @@ RUN chmod +x entrypoint.sh
 
 # IOT package
 
-# RUN ./entrypoint.sh install_iot_apt_tools
+RUN ./entrypoint.sh install_iot_apt_tools
 
 # Misc package
 

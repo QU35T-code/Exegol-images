@@ -1,6 +1,6 @@
 # Author: The Exegol Project
 
-FROM exegol-base as build
+FROM exegol-base:PR1-arm64 as build
 
 ARG TAG="local"
 ARG VERSION="local"
