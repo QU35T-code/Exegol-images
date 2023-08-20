@@ -67,6 +67,7 @@ jobs:
       DOCKERFILE: ./build/base.dockerfile
       IMAGE_VERSION: ${{ needs.varset.outputs.IMAGE_VERSION }}
       ARCH: ${{ matrix.arch }}
+      PACKAGE_NAME: nothing
       PR_MODE: true
 
   build_belt:
