@@ -45,9 +45,9 @@ jobs:
           echo "IMAGE_BASE_NAME=PR${PR_NUMBER}" >> $GITHUB_OUTPUT
           echo "DOCKERFILE=${DOCKERFILE}" >> $GITHUB_OUTPUT
 
-  # code-check:
-  #   name: Code compliance
-  #   uses: ./.github/workflows/sub_code_check.yml
+  code-check:
+    name: Code compliance
+    uses: ./.github/workflows/sub_code_check.yml
 
   base_belt:
     name: Base belt
