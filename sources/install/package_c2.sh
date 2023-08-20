@@ -28,6 +28,7 @@ function install_metasploit() {
     ./msfinstall
     cd /tmp
     rm -rf /tmp/metasploit_install
+    mv /opt/metasploit-framework /opt/tools/
     bundle install --gemfile /opt/tools/metasploit-framework/embedded/framework/Gemfile
     rvm use 3.0.0@default
     # https://github.com/ruby/fileutils/issues/22 -> Warnings
