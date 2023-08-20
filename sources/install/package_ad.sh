@@ -930,6 +930,15 @@ function install_noPac() {
     add-test-command "noPac --help"
     add-to-list "noPac,https://github.com/Ridter/noPac,Exploiting CVE-2021-42278 and CVE-2021-42287 to impersonate DA from standard domain user."
 }
+
+function configure_ad() {
+    configure_responder
+    configure_crackmapexec
+    configure_bloodhound
+    configure_impacket
+    configure_krbrelayx
+}
+
 # Package dedicated to internal Active Directory tools
 function package_ad() {
     install_ad_apt_tools
@@ -1009,12 +1018,4 @@ function package_ad() {
     install_bqm                    # Deduplicate custom BloudHound queries from different datasets and merge them in one customqueries.json file.
     install_neo4j                  # Bloodhound dependency
     install_noPac
-}
-
-function package_ad_configure() {
-    configure_responder
-    configure_crackmapexec
-    configure_bloodhound
-    configure_impacket
-    configure_krbrelayx
 }

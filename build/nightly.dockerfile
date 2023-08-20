@@ -1,19 +1,25 @@
-FROM exegol-iot:PR1-arm64 as iot
-FROM exegol-misc:PR1-arm64 as misc
-FROM exegol-cloud:PR1-arm64 as cloud
-FROM exegol-mobile:PR1-arm64 as mobile
-FROM exegol-c2:PR1-arm64 as c2
-FROM exegol-crypto:PR1-arm64 as crypto
-FROM exegol-voip:PR1-arm64 as voip
-FROM exegol-wifi:PR1-arm64 as wifi
-FROM exegol-forensic:PR1-arm64 as forensic
-FROM exegol-code_analysis:PR1-arm64 as code_analysis
-FROM exegol-wordlists:PR1-arm64 as wordlists
-FROM exegol-cracking:PR1-arm64 as cracking
-FROM exegol-rfid:PR1-arm64 as rfid
-FROM exegol-sdr:PR1-arm64 as sdr
+# Author: The Exegol Project
 
-FROM exegol-base:PR1-arm64
+ARG TAG
+ARG ARCH
+
+FROM exegol-iot:${TAG}-${ARCH} as iot
+FROM exegol-misc:${TAG}-${ARCH} as misc
+FROM exegol-cloud:${TAG}-${ARCH} as cloud
+FROM exegol-mobile:${TAG}-${ARCH} as mobile
+FROM exegol-c2:${TAG}-${ARCH} as c2
+FROM exegol-crypto:${TAG}-${ARCH} as crypto
+FROM exegol-voip:${TAG}-${ARCH} as voip
+FROM exegol-wifi:${TAG}-${ARCH} as wifi
+FROM exegol-forensic:${TAG}-${ARCH} as forensic
+FROM exegol-code_analysis:${TAG}-${ARCH} as code_analysis
+FROM exegol-wordlists:${TAG}-${ARCH} as wordlists
+FROM exegol-cracking:${TAG}-${ARCH} as cracking
+FROM exegol-rfid:${TAG}-${ARCH} as rfid
+FROM exegol-sdr:${TAG}-${ARCH} as sdr
+FROM exegol-ad:${TAG}-${ARCH} as ad
+
+FROM exegol-base:${TAG}-${ARCH}
 
 ARG TAG="local"
 ARG VERSION="local"
@@ -119,6 +125,12 @@ RUN ./entrypoint.sh install_sdr_apt_tools
 COPY --from=sdr /tmp/resources/ /tmp/resources
 RUN ../assets/exegol/import_tools.sh
 RUN ./entrypoint.sh configure_sdr
+
+# AD package
+RUN ./entrypoint.sh install_ad_apt_tools
+COPY --from=ad /tmp/resources/ /tmp/resources
+RUN ../assets/exegol/import_tools.sh
+RUN ./entrypoint.sh configure_ad
 
 WORKDIR /root
 
