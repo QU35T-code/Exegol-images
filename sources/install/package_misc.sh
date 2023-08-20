@@ -144,7 +144,6 @@ function install_objectwalker() {
 function configure_misc() {
     configure_searchsploit
     configure_trilium
-    configure_misc_pipx
     ln -s /root/.local/pipx/venvs/arsenal-cli/bin/arsenal /root/.local/bin/arsenal
 }
 

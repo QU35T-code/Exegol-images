@@ -81,7 +81,6 @@ function install_androguard() {
 }
 
 function configure_mobile() {
-    configure_mobile_pipx
     configure_objection
     ln -s /root/.local/pipx/venvs/frida-tools/bin/frida /root/.local/bin/frida
 }
