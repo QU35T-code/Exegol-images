@@ -78,7 +78,7 @@ jobs:
       matrix:
         arch: [ arm64 ]
         #arch: [ arm64, amd64 ]
-        intermediary_images: [ "code_analysis", "wordlists", "cracking", "rfid", "sdr" ]
+        intermediary_images: [ "sdr" ]
     uses: ./.github/workflows/sub_build_belt.yml
     with:
       DOCKER_BUILD_REPO: exegol-${{ matrix.intermediary_images }}
