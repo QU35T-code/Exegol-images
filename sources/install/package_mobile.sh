@@ -80,13 +80,10 @@ function install_androguard() {
     add-to-list "androguard,https://github.com/androguard/androguard,Reverse engineering and analysis of Android applications"
 }
 
-function configure_mobile_pipx() {
-    ln -s /root/.local/pipx/venvs/frida-tools/bin/frida /root/.local/bin/frida
-}
-
 function configure_mobile() {
     configure_mobile_pipx
     configure_objection
+    ln -s /root/.local/pipx/venvs/frida-tools/bin/frida /root/.local/bin/frida
 }
 
 # Package dedicated to mobile apps pentest tools

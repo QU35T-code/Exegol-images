@@ -28,7 +28,7 @@ function install_metasploit() {
     ./msfinstall
     cd /tmp
     rm -rf /tmp/metasploit_install
-    bundle install --gemfile /opt/metasploit-framework/embedded/framework/Gemfile
+    bundle install --gemfile /opt/tools/metasploit-framework/embedded/framework/Gemfile
     rvm use 3.0.0@default
     # https://github.com/ruby/fileutils/issues/22 -> Warnings
     add-history msfconsole
@@ -67,8 +67,7 @@ function install_sliver() {
 }
 
 function configure_c2() {
-    colorecho "Nothing here"
-    # configure_metasploit
+    ln -s /root/.local/pipx/venvs/routersploit/bin/rsf.py /root/.local/bin/rsf.py
 }
 
 # Package dedicated to command & control frameworks
