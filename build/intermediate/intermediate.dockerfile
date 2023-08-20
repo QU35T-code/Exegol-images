@@ -1,11 +1,12 @@
 # Author: The Exegol Project
 
-FROM exegol-base:${TAG}-${ARCH} as build
 
-ARG PACKAGE
 ARG TAG
 ARG ARCH
 
+FROM exegol-base:${TAG}-${ARCH} as build
+
+ARG PACKAGE
 RUN echo "PACKAGE is: $PACKAGE"
 COPY sources /root/sources/
 WORKDIR /root/sources/install
