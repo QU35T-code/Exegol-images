@@ -3,6 +3,11 @@
 
 source common.sh
 
+function install_code_analysis_apt_tools() {
+    # CODE-CHECK-WHITELIST=add-aliases,add-history,add-test-command,add-to-list
+    colorecho "Nothing here"
+}
+
 function install_vulny-code-static-analysis() {
     colorecho "Installing Vulny Code Static Analysis"
     git -C /opt/tools/ clone --depth 1 https://github.com/swisskyrepo/Vulny-Code-Static-Analysis
@@ -30,6 +35,10 @@ function install_semgrep() {
     add-history semgrep
     add-test-command "semgrep --help"
     add-to-list "semgrep,https://github.com/returntocorp/semgrep/,Static analysis tool that supports multiple languages and can find a variety of vulnerabilities and coding errors."
+}
+
+function configure_code_analysis() {
+    colorecho "Nothing here"
 }
 
 # Package dedicated to SAST and DAST tools

@@ -27,6 +27,10 @@ function install_cracking_apt_tools() {
 function install_john() {
     colorecho "Installing john the ripper"
     git -C /opt/tools/ clone --depth 1 https://github.com/openwall/john
+    # Test here
+    cd /opt/tools/john/src
+    ./configure --disable-native-tests && make
+    # End test
     add-aliases john-the-ripper
     add-history john-the-ripper
     add-test-command "john --help"
@@ -34,8 +38,9 @@ function install_john() {
 }
 
 function configure_john() {
-    cd /opt/tools/john/src
-    ./configure --disable-native-tests && make
+    colorecho "john test"
+    # cd /opt/tools/john/src
+    # ./configure --disable-native-tests && make
 }
 
 function install_name-that-hash() {
@@ -81,6 +86,10 @@ function install_pkcrack() {
     add-to-list "pkcrack,https://github.com/keyunluo/pkcrack,tool to generate wordlists of passwords containing cities at a defined distance around the client city"
 }
 
+function configure_cracking() {
+    configure_john
+}
+
 # Package dedicated to offline cracking/bruteforcing tools
 function package_cracking() {
     set_ruby_env
@@ -90,8 +99,4 @@ function package_cracking() {
     install_haiti                   # haiti, hash type identifier
     install_geowordlists            # wordlists generator
     install_pkcrack                 # known plaintext ZIP cracker
-}
-
-function package_cracking_configure() {
-    configure_john
 }

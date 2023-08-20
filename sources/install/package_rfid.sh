@@ -85,6 +85,10 @@ function install_proxmark3() {
     add-to-list "proxmark3,https://github.com/Proxmark/proxmark3,Open source RFID research toolkit."
 }
 
+function configure_rfid() {
+    colorecho "Nothing here"
+}
+
 # Package dedicated to RFID/NCF pentest tools
 function package_rfid() {
     set_ruby_env

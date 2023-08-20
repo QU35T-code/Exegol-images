@@ -7,6 +7,11 @@ FROM exegol-crypto:PR1-arm64 as crypto
 FROM exegol-voip:PR1-arm64 as voip
 FROM exegol-wifi:PR1-arm64 as wifi
 FROM exegol-forensic:PR1-arm64 as forensic
+FROM exegol-code_analysis:PR1-arm64 as code_analysis
+FROM exegol-wordlists:PR1-arm64 as wordlists
+FROM exegol-cracking:PR1-arm64 as cracking
+FROM exegol-rfid:PR1-arm64 as rfid
+FROM exegol-sdr:PR1-arm64 as sdr
 
 FROM exegol-base:PR1-arm64
 
@@ -85,8 +90,37 @@ COPY --from=forensic /tmp/resources/ /tmp/resources
 RUN ../assets/exegol/import_tools.sh
 RUN ./entrypoint.sh configure_forensic
 
-# Latest sync
+# Code analysis package
+RUN ./entrypoint.sh install_code_analysis_apt_tools
+COPY --from=code_analysis /tmp/resources/ /tmp/resources
+RUN ../assets/exegol/import_tools.sh
+RUN ./entrypoint.sh configure_code_analysis
 
+# Wordlists package
+RUN ./entrypoint.sh install_wordlists_apt_tools
+COPY --from=wordlists /tmp/resources/ /tmp/resources
+RUN ../assets/exegol/import_tools.sh
+RUN ./entrypoint.sh configure_wordlists
+
+# Cracking package
+RUN ./entrypoint.sh install_cracking_apt_tools
+COPY --from=cracking /tmp/resources/ /tmp/resources
+RUN ../assets/exegol/import_tools.sh
+RUN ./entrypoint.sh configure_cracking
+
+# RFID package
+RUN ./entrypoint.sh install_rfid_apt_tools
+COPY --from=rfid /tmp/resources/ /tmp/resources
+RUN ../assets/exegol/import_tools.sh
+RUN ./entrypoint.sh configure_rfid
+
+# SDR package
+RUN ./entrypoint.sh install_sdr_apt_tools
+COPY --from=sdr /tmp/resources/ /tmp/resources
+RUN ../assets/exegol/import_tools.sh
+RUN ./entrypoint.sh configure_sdr
+
+# Latest sync
 RUN chmod +x ../assets/exegol/pipx_symlink.sh
 RUN ../assets/exegol/pipx_symlink.sh
 

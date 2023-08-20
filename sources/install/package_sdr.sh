@@ -48,6 +48,10 @@ function install_jackit() {
     add-to-list "jackit,https://github.com/insecurityofthings/jackit,Exploit to take over a wireless mouse and keyboard"
 }
 
+function configure_sdr() {
+    colorecho "Nothing here"
+}
+
 # Package dedicated to SDR
 function package_sdr() {
     set_ruby_env

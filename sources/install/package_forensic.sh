@@ -103,6 +103,8 @@ function install_jadx() {
 
 function configure_forensic() {
     configure_volatility2
+    ln -v -s /root/.local/pipx/venvs/volatility3/bin/vol /root/.local/bin/vol
+    ln -v -s /root/.local/pipx/venvs/volatility3/bin/volshell /root/.local/bin/volshell
 }
 
 # Package dedicated to forensic tools
