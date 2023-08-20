@@ -6,6 +6,7 @@ FROM exegol-c2:PR1-arm64 as c2
 FROM exegol-crypto:PR1-arm64 as crypto
 FROM exegol-voip:PR1-arm64 as voip
 FROM exegol-wifi:PR1-arm64 as wifi
+FROM exegol-forensic:PR1-arm64 as forensic
 
 FROM exegol-base:PR1-arm64
 
@@ -77,6 +78,12 @@ RUN ./entrypoint.sh install_wifi_apt_tools
 COPY --from=wifi /tmp/resources/ /tmp/resources
 RUN ../assets/exegol/import_tools.sh
 RUN ./entrypoint.sh configure_wifi
+
+# Forensic package
+RUN ./entrypoint.sh install_forensic_apt_tools
+COPY --from=forensic /tmp/resources/ /tmp/resources
+RUN ../assets/exegol/import_tools.sh
+RUN ./entrypoint.sh configure_forensic
 
 # Latest sync
 

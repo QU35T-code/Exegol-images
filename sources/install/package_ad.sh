@@ -129,15 +129,15 @@ function configure_bloodhound() {
     colorecho "Configure bloodhound"
     if [[ $(uname -m) = 'x86_64' ]]
     then
-        ln -s /opt/tools/BloodHound4/BloodHound-linux-x64/BloodHound /opt/tools/BloodHound4/BloodHound
+        ln -v -s /opt/tools/BloodHound4/BloodHound-linux-x64/BloodHound /opt/tools/BloodHound4/BloodHound
     elif [[ $(uname -m) = 'aarch64' ]]
     then
         fapt libgbm1
-        ln -s /opt/tools/BloodHound4/BloodHound-linux-arm64/BloodHound /opt/tools/BloodHound4/BloodHound
+        ln -v -s /opt/tools/BloodHound4/BloodHound-linux-arm64/BloodHound /opt/tools/BloodHound4/BloodHound
     elif [[ $(uname -m) = 'armv7l' ]]
     then
         fapt libgbm1
-        ln -s /opt/tools/BloodHound4/BloodHound-linux-armv7l/BloodHound /opt/tools/BloodHound4/BloodHound
+        ln -v -s /opt/tools/BloodHound4/BloodHound-linux-armv7l/BloodHound /opt/tools/BloodHound4/BloodHound
     else
         criticalecho-noexit "This installation function doesn't support architecture $(uname -m)" && return
     fi
@@ -445,7 +445,7 @@ function install_pth-tools() {
     then
         fapt libreadline8 libreadline-dev
         git -C /opt/tools clone --depth 1 https://github.com/byt3bl33d3r/pth-toolkit
-        ln -s /usr/lib/x86_64-linux-gnu/libreadline.so /opt/tools/pth-toolkit/lib/libreadline.so.6
+        ln -v -s /usr/lib/x86_64-linux-gnu/libreadline.so /opt/tools/pth-toolkit/lib/libreadline.so.6
         add-aliases pth-tools
         add-history pth-tools
         add-test-command "pth-net --version"
@@ -816,7 +816,7 @@ function install_rusthound() {
     cargo build --release
     # Clean dependencies used to build the binary
     rm -rf target/release/{deps,build}
-    ln -s /opt/tools/RustHound/target/release/rusthound /opt/tools/bin/rusthound
+    ln -v -s /opt/tools/RustHound/target/release/rusthound /opt/tools/bin/rusthound
     add-history rusthound
     add-test-command "rusthound --help"
     add-to-list "rusthound,https://github.com/OPENCYBER-FR/RustHound,BloodHound ingestor in Rust."

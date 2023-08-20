@@ -119,7 +119,7 @@ function install_theharvester() {
     python3 -m venv ./venv
     ./venv/bin/python3 -m pip install -r requirements.txt
     # The tool needs access to the proxies.yaml file in the folder.
-    ln -s /opt/tools/theHarvester /usr/local/etc/
+    ln -v -s /opt/tools/theHarvester /usr/local/etc/
     add-aliases theharvester
     add-history theharvester
     add-test-command "theHarvester.py --help"
@@ -158,7 +158,7 @@ function install_buster() {
     pip install cython requests beautifulsoup4 PyYaml lxml grequests gevent twint
     python3 setup.py install
     deactivate
-    ln -s /opt/tools/buster/venv/bin/buster /opt/tools/bin
+    ln -v -s /opt/tools/buster/venv/bin/buster /opt/tools/bin
     add-history buster
     add-test-command "buster --help"
     add-to-list "buster,https://github.com/sham00n/Buster,Advanced OSINT tool"
@@ -278,7 +278,7 @@ function install_constellation() {
         wget -O /tmp/constellation.tar.gz https://github.com/constellation-app/constellation/releases/download/v2.1.1/constellation-linux-v2.1.1.tar.gz
         tar xvf /tmp/constellation.tar.gz -C /opt/tools/
         rm /tmp/constellation.tar.gz
-        ln -s /opt/tools/constellation/bin/constellation /opt/tools/bin/constellation
+        ln -v -s /opt/tools/constellation/bin/constellation /opt/tools/bin/constellation
     else
         criticalecho-noexit "This installation function doesn't support architecture $(uname -m)" && return
     fi

@@ -69,7 +69,7 @@ function install_kiterunner() {
     wget https://wordlists-cdn.assetnote.io/data/kiterunner/routes-large.kite.tar.gz
     wget https://wordlists-cdn.assetnote.io/data/kiterunner/routes-small.kite.tar.gz
     make build
-    ln -s "$(pwd)/dist/kr" /opt/tools/bin/kr
+    ln -v -s "$(pwd)/dist/kr" /opt/tools/bin/kr
     add-history kiterunner
     add-test-command "kr --help"
     add-to-list "kiterunner,https://github.com/assetnote/kiterunner,Tool for operating Active Directory environments."
@@ -561,7 +561,7 @@ function install_feroxbuster() {
     cd /opt/tools/feroxbuster
     curl -sL https://raw.githubusercontent.com/epi052/feroxbuster/master/install-nix.sh | bash
     # Adding a symbolic link in order for autorecon to be able to find the Feroxbuster binary
-    ln -s /opt/tools/feroxbuster/feroxbuster /opt/tools/bin/feroxbuster
+    ln -v -s /opt/tools/feroxbuster/feroxbuster /opt/tools/bin/feroxbuster
     add-aliases feroxbuster
     add-history feroxbuster
     add-test-command "feroxbuster --help"
@@ -740,7 +740,7 @@ function install_sqlmap() {
     # CODE-CHECK-WHITELIST=add-aliases
     colorecho "Installing sqlmap"
     git -C /opt/tools/ clone --depth 1 https://github.com/sqlmapproject/sqlmap.git
-    ln -s "/opt/tools/sqlmap/sqlmap.py" /opt/tools/bin/sqlmap
+    ln -v -s "/opt/tools/sqlmap/sqlmap.py" /opt/tools/bin/sqlmap
     add-history sqlmap
     add-test-command "sqlmap --version"
     add-to-list "sqlmap,https://github.com/sqlmapproject/sqlmap,Sqlmap is an open-source penetration testing tool that automates the process of detecting and exploiting SQL injection flaws"

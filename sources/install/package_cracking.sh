@@ -74,8 +74,8 @@ function install_pkcrack() {
     cd /opt/tools/pkcrack/build
     cmake ..
     make
-    ln -s /opt/tools/pkcrack/bin/pkcrack /opt/tools/bin
-    ln -s /opt/tools/pkcrack/bin/zipdecrypt /opt/tools/bin
+    ln -v -s /opt/tools/pkcrack/bin/pkcrack /opt/tools/bin
+    ln -v -s /opt/tools/pkcrack/bin/zipdecrypt /opt/tools/bin
     add-history pkcrack
     add-test-command 'pkcrack --help |& grep "Usage"'
     add-to-list "pkcrack,https://github.com/keyunluo/pkcrack,tool to generate wordlists of passwords containing cities at a defined distance around the client city"

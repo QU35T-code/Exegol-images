@@ -87,7 +87,7 @@ function install_searchsploit() {
 
 function configure_searchsploit() {
     colorecho "Configuring Searchsploit"
-    ln -sf /opt/tools/exploitdb/searchsploit /opt/tools/bin/searchsploit
+    ln -v -sf /opt/tools/exploitdb/searchsploit /opt/tools/bin/searchsploit
     cp -n /opt/tools/exploitdb/.searchsploit_rc ~/
     sed -i 's/\(.*[pP]aper.*\)/#\1/' ~/.searchsploit_rc
     sed -i 's/opt\/exploitdb/opt\/tools\/exploitdb/' ~/.searchsploit_rc
@@ -144,7 +144,7 @@ function install_objectwalker() {
 function configure_misc() {
     configure_searchsploit
     configure_trilium
-    ln -s /root/.local/pipx/venvs/arsenal-cli/bin/arsenal /root/.local/bin/arsenal
+    ln -v -s /root/.local/pipx/venvs/arsenal-cli/bin/arsenal /root/.local/bin/arsenal
 }
 
 # Package dedicated to offensive miscellaneous tools

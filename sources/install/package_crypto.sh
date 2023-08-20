@@ -34,7 +34,7 @@ function install_rsactftool() {
 }
 
 function configure_crypto() {
-    echo "Nothing here"
+    colorecho "Nothing here"
 }
 
 # Package dedicated to attack crypto

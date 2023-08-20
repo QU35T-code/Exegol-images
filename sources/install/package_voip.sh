@@ -18,7 +18,7 @@ function install_sipvicious() {
 }
 
 function configure_voip() {
-    ln -s /root/.local/pipx/venvs/sipvicious/bin/sipvicious_svcrack /root/.local/bin/sipvicious_svcrack
+    ln -v -s /root/.local/pipx/venvs/sipvicious/bin/sipvicious_svcrack /root/.local/bin/sipvicious_svcrack
 }
 
 # Package dedicated to VOIP/SIP pentest tools

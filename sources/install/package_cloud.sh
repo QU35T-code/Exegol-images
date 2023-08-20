@@ -104,7 +104,7 @@ function install_cloudmapper() {
 }
 
 function configure_cloud() {
-    ln -s /root/.local/pipx/venvs/scoutsuite/bin/scout /root/.local/bin/scout
+    ln -v -s /root/.local/pipx/venvs/scoutsuite/bin/scout /root/.local/bin/scout
 }
 
 # Package dedicated to cloud tools

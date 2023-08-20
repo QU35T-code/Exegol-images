@@ -43,7 +43,7 @@ function install_dex2jar() {
     wget https://github.com/pxb1988/dex2jar/releases/latest/download/dex2jar-2.1.zip -O /tmp/dex2jar.zip
     unzip /tmp/dex2jar.zip -d /opt/tools/
     mv /opt/tools/dex-tools-2.1/ /opt/tools/dex2jar
-    find /opt/tools/dex2jar -type f -name "*.sh" -exec ln -s '{}' /opt/tools/bin ';'
+    find /opt/tools/dex2jar -type f -name "*.sh" -exec ln -v -s '{}' /opt/tools/bin ';'
     add-history dex2jar
     add-test-command "d2j-dex2jar.sh --help"
     add-to-list "dex2jar,https://github.com/pxb1988/dex2jar,A tool to convert Android's dex files to Java's jar files"
@@ -82,7 +82,7 @@ function install_androguard() {
 
 function configure_mobile() {
     configure_objection
-    ln -s /root/.local/pipx/venvs/frida-tools/bin/frida /root/.local/bin/frida
+    ln -v -s /root/.local/pipx/venvs/frida-tools/bin/frida /root/.local/bin/frida
 }
 
 # Package dedicated to mobile apps pentest tools

@@ -84,7 +84,7 @@ function install_hcxtools() {
     # FIXME whenever possible to stay up to date with project (https://github.com/ZerBea/hcxtools/issues/233) => Need to upgrade to the Debian 12 release
     git checkout 5937d2ad9d021f3b5e2edd55d79439b8485d3222
     make install PREFIX=/opt/tools
-    ln -s /opt/tools/bin/hcxpcapngtool /opt/tools/bin/hcxpcaptool
+    ln -v -s /opt/tools/bin/hcxpcapngtool /opt/tools/bin/hcxpcaptool
     add-history hcxtools
     add-test-command "hcxpcapngtool --version"
     add-test-command "hcxhashtool --version"

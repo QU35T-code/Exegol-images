@@ -40,12 +40,15 @@ function install_volatility2() {
     python2 setup.py install
     deactivate
     # https://github.com/volatilityfoundation/volatility/issues/535#issuecomment-407571161
-    ln -s /usr/local/lib/python2.7/dist-packages/usr/lib/libyara.so /usr/lib/libyara.so
     add-aliases volatility2
     # TODO: Improve volatility2 history
     add-history volatility2
     add-test-command "volatility2 --help"
     add-to-list "volatility2,https://github.com/volatilityfoundation/volatility,Volatile memory extraction utility framework"
+}
+
+function configure_volatility2() {
+    ln -v -s /usr/local/lib/python2.7/dist-packages/usr/lib/libyara.so /usr/lib/libyara.so
 }
 
 function install_volatility3() {
@@ -96,6 +99,10 @@ function install_jadx() {
     add-history jadx
     add-test-command "jadx --help"
     add-to-list "jadx,https://github.com/skylot/jadx,Java decompiler"
+}
+
+function configure_forensic() {
+    configure_volatility2
 }
 
 # Package dedicated to forensic tools

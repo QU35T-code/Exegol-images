@@ -68,7 +68,7 @@ function install_proxychains() {
     make
     make install
     # Add proxyresolv to PATH (needed with 'proxy_dns_old' config)
-    ln -s /opt/tools/proxychains-ng/src/proxyresolv /usr/bin/proxyresolv
+    ln -v -s /opt/tools/proxychains-ng/src/proxyresolv /usr/bin/proxyresolv
     make install-config
     cp -v /root/sources/assets/proxychains/proxychains.conf /etc/proxychains.conf
     add-aliases proxychains
@@ -93,9 +93,9 @@ function install_autorecon() {
     # CODE-CHECK-WHITELIST=add-aliases
     colorecho "Installing autorecon"
     git -C /opt/tools/ clone --depth 1 https://gitlab.com/kalilinux/packages/oscanner.git
-    ln -sv /opt/tools/oscanner/debian/helper-script/oscanner /usr/bin/oscanner
+    ln -v -s /opt/tools/oscanner/debian/helper-script/oscanner /usr/bin/oscanner
     git -C /opt/tools clone --depth 1 https://gitlab.com/kalilinux/packages/tnscmd10g.git
-    ln -sv /opt/tools/tnscmd10g/tnscmd10g /usr/bin/tnscmd10g
+    ln -v -s /opt/tools/tnscmd10g/tnscmd10g /usr/bin/tnscmd10g
     fapt dnsrecon wkhtmltopdf
     python3 -m pipx install git+https://github.com/Tib3rius/AutoRecon
     add-history autorecon

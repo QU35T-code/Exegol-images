@@ -254,10 +254,10 @@ function package_base() {
 
     install_rust_cargo
     install_rvm                                         # Ruby Version Manager
-    ln -s /bin/mkdir /usr/bin/mkdir                     # Some tools need this path for build
+    ln -v -s /bin/mkdir /usr/bin/mkdir                     # Some tools need this path for build
 
-    ln -s -v /usr/lib/jvm/java-11-openjdk-* /usr/lib/jvm/java-11-openjdk    # To avoid determining the correct path based on the architecture
-    ln -s -v /usr/lib/jvm/java-17-openjdk-* /usr/lib/jvm/java-17-openjdk    # To avoid determining the correct path based on the architecture
+    ln -v -s /usr/lib/jvm/java-11-openjdk-* /usr/lib/jvm/java-11-openjdk    # To avoid determining the correct path based on the architecture
+    ln -v -s /usr/lib/jvm/java-17-openjdk-* /usr/lib/jvm/java-17-openjdk    # To avoid determining the correct path based on the architecture
     update-alternatives --set java /usr/lib/jvm/java-17-openjdk-*/bin/java  # Set the default openjdk version to 17
 
     ln -fs /usr/bin/python2.7 /usr/bin/python # Default python is set to 2.7

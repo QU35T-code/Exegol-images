@@ -41,8 +41,11 @@ function install_metasploit() {
 
 function configure_metasploit() {
     colorecho "Configuring Metasploit"
-    cd /opt/metasploit-framework/embedded/framework
-    bundle install
+    fapt libjemalloc-dev
+    cd /opt/tools/metasploit-framework
+    sed -i "s#/opt/metasploit-framework#/opt/tools/metasploit-framework#" bin/*
+    ln -v -s /opt/tools/metasploit-framework/bin/msfconsole /opt/tools/bin/msfconsole
+    ln -v -s /opt/tools/metasploit-framework/bin/msfvenom /opt/tools/bin/msfvenom
 }
 
 function install_routersploit() {
@@ -69,7 +72,8 @@ function install_sliver() {
 }
 
 function configure_c2() {
-    ln -s /root/.local/pipx/venvs/routersploit/bin/rsf.py /root/.local/bin/rsf.py
+    configure_metasploit
+    ln -v -s /root/.local/pipx/venvs/routersploit/bin/rsf.py /root/.local/bin/rsf.py
 }
 
 # Package dedicated to command & control frameworks
