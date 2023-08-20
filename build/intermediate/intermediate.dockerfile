@@ -4,7 +4,7 @@ ARG PACKAGE
 ARG TAG
 ARG ARCH
 
-FROM exegol-base:${TAG}-${ARCH} as build
+FROM exegol-base:${TAG}-${ARCH}${PACKAGE} as build
 
 COPY sources /root/sources/
 WORKDIR /root/sources/install
