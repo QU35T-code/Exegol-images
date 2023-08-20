@@ -4,6 +4,7 @@
 source common.sh
 
 function install_cloud_apt_tools() {
+    # CODE-CHECK-WHITELIST=add-aliases,add-history,add-test-command,add-to-list
     colorecho "Nothing to install"
 }
 
