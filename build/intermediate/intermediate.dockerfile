@@ -1,9 +1,10 @@
 # Author: The Exegol Project
 
 ARG PACKAGE_NAME="nothing"
-ARG IMAGE_VERSION="nothing"
+ARG TAG="12"
+ARG ARCH="arm54"
 
-FROM exegol-base:${IMAGE_VERSION} as build
+FROM exegol-base:${TAG}-${ARCH} as build
 
 COPY sources /root/sources/
 WORKDIR /root/sources/install
