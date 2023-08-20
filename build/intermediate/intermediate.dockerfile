@@ -1,7 +1,7 @@
 # Author: The Exegol Project
 
 ARG PACKAGE_NAME="nothing"
-ARG TAG="12"
+ARG TAG
 ARG ARCH="arm54"
 
 FROM exegol-base:${TAG}-${ARCH} as build
