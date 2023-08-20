@@ -144,7 +144,6 @@ function install_objectwalker() {
 function configure_misc() {
     configure_searchsploit
     configure_trilium
-    ln -v -s /root/.local/pipx/venvs/arsenal-cli/bin/arsenal /root/.local/bin/arsenal
 }
 
 # Package dedicated to offensive miscellaneous tools

@@ -120,10 +120,6 @@ COPY --from=sdr /tmp/resources/ /tmp/resources
 RUN ../assets/exegol/import_tools.sh
 RUN ./entrypoint.sh configure_sdr
 
-# Latest sync
-RUN chmod +x ../assets/exegol/pipx_symlink.sh
-RUN ../assets/exegol/pipx_symlink.sh
-
 WORKDIR /root
 
 ENTRYPOINT [ "/.exegol/entrypoint.sh" ]

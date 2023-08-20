@@ -73,7 +73,6 @@ function install_sliver() {
 
 function configure_c2() {
     configure_metasploit
-    ln -v -s /root/.local/pipx/venvs/routersploit/bin/rsf.py /root/.local/bin/rsf.py
 }
 
 # Package dedicated to command & control frameworks

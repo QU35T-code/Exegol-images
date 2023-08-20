@@ -85,9 +85,10 @@ jobs:
       #DOCKER_BUILD_REPO: ${{ needs.varset.outputs.DOCKER_BUILD_REPO }}
       DOCKER_TARGET_REPO: ${{ needs.varset.outputs.DOCKER_TARGET_REPO }}
       IMAGE_BASE_NAME: ${{ needs.varset.outputs.IMAGE_BASE_NAME }}
-      DOCKERFILE: ./build/intermediate/${{ matrix.intermediary_images }}.dockerfile
+      DOCKERFILE: ./build/intermediate/intermediate.dockerfile
       IMAGE_VERSION: ${{ needs.varset.outputs.IMAGE_VERSION }}
       ARCH: ${{ matrix.arch }}
+      PACKAGE_NAME: ${{ matrix.intermediary_images }}
       PR_MODE: true
 
   image_belt:

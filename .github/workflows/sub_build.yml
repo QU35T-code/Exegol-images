@@ -9,6 +9,9 @@ on:
       IMAGE_BASE_NAME:
         required: true
         type: string
+      PACKAGE_NAME:
+        required: true
+        type: string
       IMAGE_VERSION:
         required: false
         default: ''
@@ -72,6 +75,7 @@ jobs:
           load: true
           no-cache: true
           build-args: |
+            PACKAGE_NAME=${{ inputs.PACKAGE_NAME }}
             TAG=${{ inputs.IMAGE_BASE_NAME }}
             VERSION=${{ steps.prepare_build.outputs.image_version }}
             BUILD_DATE=${{ steps.prepare_build.outputs.build_date }}
