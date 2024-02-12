@@ -1,24 +1,6 @@
 # sourcing exegol custom .rc source file
 source /opt/.exegol_shells_rc
 
-# ZSH setup
-export ZSH="/root/.oh-my-zsh"
-ZSH_THEME="gentoo"
-
-# fzf
-export FZF_BASE=/opt/tools/fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-plugins=(docker docker-compose zsh-syntax-highlighting zsh-completions zsh-autosuggestions tmux fzf zsh-z zsh-nvm asdf)
-
-# asdf
-source "$HOME/.asdf/asdf.sh"
-source ~/.asdf/plugins/golang/set-env.zsh
-export GOPATH=$(go env GOPATH)
-
-# oh-my-zsh
-source $ZSH/oh-my-zsh.sh
-
 TIME_="%{$fg[white]%}[%{$fg[red]%}%D{%b %d, %Y - %T (%Z)}%{$fg[white]%}]%{$reset_color%}"
 PROMPT="$LOGGING$TIME_%{$FX[bold]$FG[013]%} $EXEGOL_HOSTNAME %{$fg_bold[blue]%}%(!.%1~.%c) $(prompt_char)%{$reset_color%} "
 

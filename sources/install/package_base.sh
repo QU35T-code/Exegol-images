@@ -189,6 +189,9 @@ function install_fzf() {
     git -C /opt/tools clone --depth 1 https://github.com/junegunn/fzf.git
     yes|/opt/tools/fzf/install
     add-aliases fzf
+    add-to-zshrc "# fzf
+export FZF_BASE=/opt/tools/fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh"
     add-test-command "fzf-wordlists --help"
     add-test-command "fzf --help"
     add-to-list "fzf,https://github.com/junegunn/fzf,🌸 A command-line fuzzy finder"
@@ -210,6 +213,11 @@ function install_ohmyzsh() {
     git -C ~/.oh-my-zsh/custom/plugins/ clone --depth 1 https://github.com/agkozak/zsh-z
     git -C ~/.oh-my-zsh/custom/plugins/ clone --depth 1 https://github.com/lukechilds/zsh-nvm
     zsh -c "source ~/.oh-my-zsh/custom/plugins/zsh-nvm/zsh-nvm.plugin.zsh" # this is needed to start an instance of zsh to have the plugin set up
+    add-to-zshrc "# ZSH setup
+export ZSH="/root/.oh-my-zsh"
+ZSH_THEME="gentoo"
+# oh-my-zsh
+source \$ZSH/oh-my-zsh.sh"
 }
 
 function install_pipx() {
@@ -383,6 +391,10 @@ function install_asdf() {
     source "$HOME/.asdf/asdf.sh"
     # completions file
     source "$HOME/.asdf/completions/asdf.bash"
+    add-to-zshrc "# asdf
+source "$HOME/.asdf/asdf.sh"
+source ~/.asdf/plugins/golang/set-env.zsh
+export GOPATH=$(go env GOPATH)"
     add-test-command "asdf version"
     add-to-list "asdf,https://github.com/asdf-vm/asdf,Extendable version manager with support for ruby python go etc"
 }
@@ -410,6 +422,8 @@ function package_base() {
     logrotate tmux tldr bat libxml2-utils virtualenv chromium libsasl2-dev \
     libldap2-dev libssl-dev isc-dhcp-client sqlite3 dnsutils samba ssh snmp faketime php \
     python3 grc emacs-nox xsel xxd libnss3-tools
+
+    add-to-zshrc "plugins=(docker docker-compose zsh-syntax-highlighting zsh-completions zsh-autosuggestions tmux fzf zsh-z zsh-nvm asdf)"
 
     filesystem
     install_locales

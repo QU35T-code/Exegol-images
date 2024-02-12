@@ -26,6 +26,10 @@ function criticalecho-noexit () {
 
 ### Support functions
 
+function add-to-zshrc() {
+    echo "$1" >> "/root/.zshrc"
+}
+
 function add-to-list() {
   echo "$1" >> "/.exegol/installed_tools.csv"
 }
