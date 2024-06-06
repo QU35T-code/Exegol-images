@@ -4,11 +4,9 @@
 source common.sh
 
 function install_tls-map() {
+    # CODE-CHECK-WHITELIST=add-aliases
     colorecho "Installing TLS map"
-    rvm use 3.2.2@tls-map --create
     gem install tls-map
-    rvm use 3.2.2@default
-    add-aliases tls-map
     add-history tls-map
     add-test-command "tls-map --help"
     add-to-list "tls-map,https://github.com/sec-it/tls-map,tls-map is a library for mapping TLS cipher algorithm names."

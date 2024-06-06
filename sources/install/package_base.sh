@@ -158,31 +158,6 @@ function install_firefox() {
     add-to-list "firefox,https://www.mozilla.org,A web browser"
 }
 
-function install_rvm() {
-    # CODE-CHECK-WHITELIST=add-aliases,add-history,add-to-list
-    colorecho "Installing rvm"
-    # allow to fetch keys when behind a firewall (https://serverfault.com/questions/168826/how-to-install-gpg-keys-from-behind-a-firewall)
-    gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-    # kill all gpg processes
-    # make sure gpgconf exists
-    if command -v gpgconf > /dev/null; then
-        gpgconf --kill all
-    else
-        :  # Do nothing, and return true
-    fi
-    # splitting curl | bash to avoid having additional logs put in curl output being executed because of catch_and_retry
-    curl -sSL https://get.rvm.io -o /tmp/rvm.sh
-    bash /tmp/rvm.sh --ruby="3.2.2" stable
-    source /usr/local/rvm/scripts/rvm
-    rvm autolibs read-fail
-    rvm rvmrc warning ignore allGemfiles
-    rvm use 3.2.2@default
-    rvm install ruby-3.1.2
-    rvm get head
-    gem update
-    add-test-command "rvm --version"
-}
-
 function install_fzf() {
     # CODE-CHECK-WHITELIST=add-history
     colorecho "Installing fzf"
@@ -346,6 +321,15 @@ function install_java21() {
     mkdir -p "/usr/lib/jvm"
     mv /tmp/jdk-21* /usr/lib/jvm/java-21-openjdk
     add-test-command "/usr/lib/jvm/java-21-openjdk/bin/java --version"
+function install_ruby() {
+    # CODE-CHECK-WHITELIST=add-aliases,add-to-list,add-history
+    colorecho "Installing ruby"
+    asdf plugin-add ruby
+    # 3.1.2 needed by cewl and pass_station
+    asdf install ruby 3.1.2
+    asdf install ruby latest
+    asdf global ruby latest
+    add-test-command "ruby --version"
 }
 
 function add_debian_repository_components() {
@@ -484,6 +468,7 @@ function package_base() {
     ln -s -v /usr/lib/jvm/java-17-openjdk-* /usr/lib/jvm/java-17-openjdk    # To avoid determining the correct path based on the architecture
     update-alternatives --set java /usr/lib/jvm/java-17-openjdk-*/bin/java  # Set the default openjdk version to 17
 
+    install_ruby                                        # Ruby language
     install_go                                          # Golang language
     install_ohmyzsh                                     # Awesome shell
     install_fzf                                         # Fuzzy finder

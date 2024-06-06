@@ -38,10 +38,8 @@ function install_weevely() {
 function install_whatweb() {
     colorecho "Installing whatweb"
     git -C /opt/tools clone --depth 1 https://github.com/urbanadventurer/WhatWeb.git
-    rvm use 3.2.2@whatweb --create
     gem install addressable
     bundle install --gemfile /opt/tools/WhatWeb/Gemfile
-    rvm use 3.2.2@default
     add-aliases whatweb
     add-history whatweb
     add-test-command "whatweb --version"
@@ -182,11 +180,9 @@ function install_xsstrike() {
 }
 
 function install_xspear() {
+    # CODE-CHECK-WHITELIST=add-aliases
     colorecho "Installing XSpear"
-    rvm use 3.2.2@xspear --create
     gem install XSpear
-    rvm use 3.2.2@default
-    add-aliases Xspear
     add-history xspear
     add-test-command "XSpear --help"
     add-to-list "XSpear,https://github.com/hahwul/XSpear,a powerful XSS scanning and exploitation tool."
@@ -281,11 +277,9 @@ function install_joomscan() {
 }
 
 function install_wpscan() {
+    # CODE-CHECK-WHITELIST=add-aliases
     colorecho "Installing wpscan"
-    rvm use 3.2.2@wpscan --create
     gem install wpscan
-    rvm use 3.2.2@default
-    add-aliases wpscan
     add-history wpscan
     add-test-command "wpscan --help"
     add-to-list "wpscan,https://github.com/wpscanteam/wpscan,A tool to enumerate WordPress-based websites"
@@ -480,11 +474,9 @@ function install_linkfinder() {
 }
 
 function install_timing_attack() {
+    # CODE-CHECK-WHITELIST=add-aliases
     colorecho "Installing timing_attack"
-    rvm use 3.2.2@timing_attack --create
     gem install timing_attack
-    rvm use 3.2.2@default
-    add-aliases timing_attack
     add-history timing_attack
     add-test-command "timing_attack --help"
     add-to-list "timing,https://github.com/ffleming/timing_attack,Tool to generate a timing profile for a given command."

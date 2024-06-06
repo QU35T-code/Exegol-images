@@ -22,7 +22,6 @@ function install_metasploit() {
     fapt libpcap-dev libpq-dev zlib1g-dev libsqlite3-dev
     git -C /opt/tools clone --depth 1 https://github.com/rapid7/metasploit-framework.git
     cd /opt/tools/metasploit-framework || exit
-    rvm use 3.2.2@metasploit --create
     gem install bundler
     bundle install
     # Add this dependency to make the pattern_create.rb script work
@@ -34,13 +33,12 @@ function install_metasploit() {
     else
       gem install timeout --version 0.4.1
     fi
-    rvm use 3.2.2@default
 
     # msfdb setup
     fapt postgresql
     cp -r /root/.bundle /var/lib/postgresql
     chown -R postgres:postgres /var/lib/postgresql/.bundle
-    sudo -u postgres sh -c "git config --global --add safe.directory /opt/tools/metasploit-framework && cd /opt/tools/metasploit-framework && /usr/local/rvm/gems/ruby-3.2.2@metasploit/wrappers/bundle exec /opt/tools/metasploit-framework/msfdb init"
+    sudo -u postgres sh -c "git config --global --add safe.directory /opt/tools/metasploit-framework && cd /opt/tools/metasploit-framework && bundle exec /opt/tools/metasploit-framework/msfdb init"
     cp -r /var/lib/postgresql/.msf4 /root
 
     add-aliases metasploit

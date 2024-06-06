@@ -4,11 +4,9 @@
 source common.sh
 
 function install_brakeman() {
+    # CODE-CHECK-WHITELIST=add-aliases
     colorecho "Installing Brakeman"
-    rvm use 3.2.2@brakeman --create
     gem install brakeman
-    rvm use 3.2.2@default
-    add-aliases brakeman
     add-history brakeman
     add-test-command "brakeman --help"
     add-to-list "brakeman,https://github.com/presidentbeef/brakeman,Static analysis tool for Ruby on Rails applications"

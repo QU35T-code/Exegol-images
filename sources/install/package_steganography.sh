@@ -29,11 +29,9 @@ function install_steganography_apt_tools() {
 }
 
 function install_zsteg() {
+    # CODE-CHECK-WHITELIST=add-aliases
     colorecho "Installing zsteg"
-    rvm use 3.2.2@zsteg --create
     gem install zsteg
-    rvm use 3.2.2@default
-    add-aliases zsteg
     add-history zsteg
     add-test-command "zsteg --help"
     add-to-list "zsteg,https://github.com/zed-0xff/zsteg,Detect steganography hidden in PNG and BMP images"

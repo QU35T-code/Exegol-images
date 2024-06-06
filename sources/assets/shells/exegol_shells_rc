@@ -6,9 +6,6 @@ umask 0007
 # Automatically exit the shell when receiving SIGTERM (when the container is stopping)
 trap exit TERM
 
-# rvm
-source /usr/local/rvm/scripts/rvm
-
 export GO111MODULE=auto
 
 # Adding exegol bins to PATH

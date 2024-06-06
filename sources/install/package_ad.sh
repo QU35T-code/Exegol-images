@@ -425,10 +425,9 @@ function install_krbrelayx() {
 }
 
 function install_evilwinrm() {
+    # CODE-CHECK-WHITELIST=add-aliases
     colorecho "Installing evil-winrm"
-    rvm use 3.1.2@evil-winrm --create
     gem install evil-winrm
-    rvm use 3.2.2@default
     add-aliases evil-winrm
     add-history evil-winrm
     add-test-command "evil-winrm --help"
@@ -1129,11 +1128,9 @@ function install_PassTheCert() {
 }
 
 function install_bqm() {
+    # CODE-CHECK-WHITELIST=add-aliases
     colorecho "Installing BQM"
-    rvm use 3.2.2@bqm --create
     gem install bqm --no-wrapper
-    rvm use 3.2.2@default
-    add-aliases bqm
     add-history bqm
     add-test-command "bqm --help"
     add-to-list "bqm,https://github.com/Acceis/bqm,Tool to deduplicate custom BloudHound queries from different datasets and merge them in one file."

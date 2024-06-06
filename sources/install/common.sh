@@ -57,12 +57,6 @@ function set_cargo_env() {
     source "$HOME/.cargo/env"
 }
 
-function set_ruby_env() {
-    colorecho "Setting ruby environment"
-    source /usr/local/rvm/scripts/rvm
-    rvm use 3.2.2@default
-}
-
 function set_python_env() {
     colorecho "Setting pyenv environment"
     # add pyenv to PATH
@@ -79,7 +73,6 @@ function set_asdf_env() {
 function set_env() {
     colorecho "Setting env (caller)"
     set_cargo_env
-    set_ruby_env
     set_python_env
     set_asdf_env
 }
