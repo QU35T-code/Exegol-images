@@ -458,7 +458,7 @@ function package_base() {
     add-aliases xsel
     add-aliases pyftpdlib
 
-    # Rust, Cargo, rvm
+    # Rust, Cargo
     install_rust_cargo
     install_rvm                                         # Ruby Version Manager
 
