@@ -83,7 +83,8 @@ function install_remmina() {
     # Create default remmina config
     mkdir -p /root/.config/remmina
     # Use the same keymap for RDP than the local client
-    echo "rdp_use_client_keymap=1" >> /root/.config/remmina/remmina.pref
+    echo "[remmina_pref]
+rdp_use_client_keymap=1" > /root/.config/remmina/remmina.pref
 
     add-history remmina
     add-test-command "remmina --help"
