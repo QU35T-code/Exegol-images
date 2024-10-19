@@ -75,7 +75,7 @@ function install_proxychains() {
 
 function install_remmina() {
     colorecho "Installing remmina"
-    # CODE-CHECK-WHITELIST=add-aliases,add-history
+    # CODE-CHECK-WHITELIST=add-aliases
     fapt remmina remmina-plugin-rdp remmina-plugin-secret
     # remmina-plugin-spice need build ?
     # https://gitlab.com/Remmina/Remmina/-/wikis/Compilation/Compile-on-Debian-10-Buster
@@ -83,9 +83,9 @@ function install_remmina() {
     # Create default remmina config
     mkdir -p /root/.config/remmina
     # Use the same keymap for RDP than the local client
-    echo "[remmina_pref]
-rdp_use_client_keymap=1" > /root/.config/remmina/remmina.pref
+    echo "rdp_use_client_keymap=1" >> /root/.config/remmina/remmina.pref
 
+    add-history remmina
     add-test-command "remmina --help"
     add-to-list "remmina,https://github.com/FreeRDP/Remmina,Remote desktop client."
 }
@@ -293,6 +293,7 @@ function package_network() {
     start_time=$(date +%s)
     install_network_apt_tools
     install_proxychains             # Network tool
+    install_remmina                 # Remote desktop client
     install_nmap                    # Port scanner
     install_nmap-parse-output       # Parse nmap XML files
     install_autorecon               # External recon tool
